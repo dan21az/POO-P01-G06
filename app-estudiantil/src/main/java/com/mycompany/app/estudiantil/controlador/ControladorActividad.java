@@ -29,7 +29,7 @@ public class ControladorActividad {
         int id = Actividad.getContadorId();
         Academica ac = new Academica(n,fV, p, t, tE, 0,id,des, asig);
         listaActividades.add(ac);
-        return new MensajeUsuario("Creando Actividad", "Actividad Personal Guardada");
+        return new MensajeUsuario("Creando Actividad", "Actividad Academica Guardada");
     }
     
     public MensajeUsuario cambiarProgreso(int id, int nuevoProgreso) {
