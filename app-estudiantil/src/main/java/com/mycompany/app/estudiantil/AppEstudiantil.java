@@ -10,7 +10,5 @@ package com.mycompany.app.estudiantil;
  */
 public class AppEstudiantil {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+
 }
