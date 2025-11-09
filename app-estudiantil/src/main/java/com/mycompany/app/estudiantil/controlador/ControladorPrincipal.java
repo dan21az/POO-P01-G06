@@ -15,14 +15,14 @@ public class ControladorPrincipal {
     VistaActividad mA = new VistaActividad(cA);
     VistaSesionEnfoque mS = new VistaSesionEnfoque(cS,cA);
 
-    Scanner scanner = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 
     String fecha = "Hoy";
     int opcion=0;
     public void menuPrincipal(){
     do {
         mP.menuPrincipal();
-        opcion = scanner.nextInt();
+        opcion = sc.nextInt();
     
       switch (opcion){
            case 1:
@@ -36,7 +36,7 @@ public class ControladorPrincipal {
           case 4:
             //Control Sostenibilidad
           case 5:
-            //Juego Memoria
+            //Juego Memoria;
           case 6:
             mP.salir();
             break;

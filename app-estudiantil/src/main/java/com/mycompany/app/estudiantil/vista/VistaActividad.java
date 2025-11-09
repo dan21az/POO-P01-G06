@@ -27,7 +27,7 @@ public class VistaActividad {
             System.out.println("2. Crear actividad");
             System.out.println("3. Registrar avance de actividad");
             System.out.println("4. Eliminar Actividad");
-            System.out.println("5 Volver al menú");
+            System.out.println("5. Volver al menú");
             System.out.print("Seleccione una opción: ");
             opcion = sc.nextInt();
         switch (opcion) {
