@@ -2,11 +2,14 @@ package com.mycompany.app.estudiantil.controlador;
 
 import java.util.Scanner;
 
-import com.mycompany.app.estudiantil.vista.VistaActividad;
-import com.mycompany.app.estudiantil.vista.VistaMenuPrincipal;
-import com.mycompany.app.estudiantil.vista.VistaSesionEnfoque;
+import com.mycompany.app.estudiantil.modelo.Hidratacionn.*;
+import com.mycompany.app.estudiantil.vista.*;
 
 public class ControladorPrincipal {
+
+    Hidratacion modelo= new Hidratacion();
+    MenuHidratacion vista = new MenuHidratacion();
+    HidratacionControladora controladora = new HidratacionControladora(modelo,vista);
 
     ControladorActividad cA = new ControladorActividad();
     ControladorSesionEnfoque cS = new ControladorSesionEnfoque(cA);
@@ -32,6 +35,8 @@ public class ControladorPrincipal {
             mS.menuSesion(fecha);
             break;
           case 3:
+            controladora.iniciar();
+            break;
             // Control hidratacion
           case 4:
             //Control Sostenibilidad
