@@ -3,11 +3,9 @@ package com.mycompany.app.estudiantil.vista;
 import java.util.List;
 import java.util.Scanner;
 
-import com.mycompany.app.estudiantil.controlador.ControladorActividad;
-import com.mycompany.app.estudiantil.modelo.actividad.Academica;
-import com.mycompany.app.estudiantil.modelo.actividad.Actividad;
-import com.mycompany.app.estudiantil.modelo.actividad.Personal;
-import com.mycompany.app.estudiantil.modelo.sesionenfoque.SesionEnfoque;
+import com.mycompany.app.estudiantil.controlador.*;
+import com.mycompany.app.estudiantil.modelo.actividad.*;
+import com.mycompany.app.estudiantil.modelo.sesionenfoque.*;
 
 public class VistaActividad {
 
@@ -88,21 +86,21 @@ public class VistaActividad {
     }
 
     public String[] detallesPaso3(){
-            String[] detalles = new String[4];
-            System.out.println("-- PASO 3: DETALLES ---");
-            System.out.print("Ingrese el Nombre: ");
-            String nombre = sc.nextLine();
-            detalles[0] = nombre;
-            System.out.print("Ingrese la Descripción: ");
-            String descripcion = sc.nextLine();
-            detalles[1] = descripcion; 
-            System.out.print("Ingrese la Fecha de Vencimiento (DD/MM/AAAA): ");
-            String fVencimiento = sc.nextLine();
-            detalles[2] = fVencimiento;
-            System.out.print("Ingrese Prioridad (ALTA, MEDIA, BAJA): ");
-            String prioridad = sc.nextLine();
-            detalles[3] = prioridad;
-            return detalles;
+        String[] detalles = new String[4];
+        System.out.println("-- PASO 3: DETALLES ---");
+        System.out.print("Ingrese el Nombre: ");
+        String nombre = sc.nextLine();
+        detalles[0] = nombre;
+        System.out.print("Ingrese la Descripción: ");
+        String descripcion = sc.nextLine();
+        detalles[1] = descripcion; 
+        System.out.print("Ingrese la Fecha de Vencimiento (DD/MM/AAAA): ");
+        String fVencimiento = sc.nextLine();
+        detalles[2] = fVencimiento;
+        System.out.print("Ingrese Prioridad (ALTA, MEDIA, BAJA): ");
+        String prioridad = sc.nextLine();
+        detalles[3] = prioridad;
+        return detalles;
     }
 
     public String seleccionarTipoAcademico(){
@@ -150,9 +148,14 @@ public class VistaActividad {
     }
 
     public void mostrarListaActividades(List<Actividad> actividades){
-        System.out.println("ID"+"\t"+"Nombre");
-        for(Actividad a: actividades){
-        System.out.println(a.getId()+"\t"+a.getNombre());
+        if(actividades.size()>0){
+            System.out.println("ID"+"\t"+"Nombre");
+            for(Actividad a: actividades){
+                System.out.println(a.getId()+"\t"+a.getNombre());
+            }
+        } else{
+            mostrarMensaje("No hay actividad para mostrar");
+            sc.nextLine();
         }
     }
 
@@ -175,7 +178,6 @@ public class VistaActividad {
                     System.out.println(s.toString());
                 }
             }
-        sc.nextLine();
         } else {
             Personal c = (Personal) a;
             System.out.println("Nombre: "+a.getNombre());
@@ -192,16 +194,26 @@ public class VistaActividad {
     }
 
     public void visualizarActividades(List <Actividad> lista){
-        System.out.println("ID"+"\t"+"CATEGORIA"+"\t"+"TIPO"+"\t"+"NOMBRE"+"\t"+"VENCIMIENTO"+"\t"+"PRIORIDAD"+"\t"+"PROGRESO");
-        for(Actividad a : lista){
-        System.out.println(a.getId()+"\t"+a.getCategoria()+"\t"+a.getTipo()+"\t"+a.getNombre()+"\t"+a.getFechaVencimiento()+"\t"+a.getPrioridad()+"\t"+a.getProgreso());
-        }
-        int i=0;
-        System.out.print("Seleccionar una actividad o (0 para regresar): ");
-        i = sc.nextInt();
-        if(i!=0){
-            Actividad a = cA.seleccionarActividad(i, lista);
-            detalleActividad(a);
+        if(lista.size()>0){
+            System.out.println("ID"+"\t"+"CATEGORIA"+"\t"+"TIPO"+"\t"+"NOMBRE"+"\t"+"VENCIMIENTO"+"\t"+"PRIORIDAD"+"\t"+"PROGRESO");
+            for(Actividad a : lista){
+            System.out.println(a.getId()+"\t"+a.getCategoria()+"\t"+a.getTipo()+"\t"+a.getNombre()+"\t"+a.getFechaVencimiento()+"\t"+a.getPrioridad()+"\t"+a.getProgreso());
+            }
+            int i=0;
+            System.out.print("Seleccionar el ID de una actividad o (0 para regresar): ");
+            i = sc.nextInt();
+            sc.nextLine();
+            if(i!=0){
+                Actividad a = cA.seleccionarActividad(i, lista);
+                if(a!=null){
+                    detalleActividad(a);
+                } else {
+                    mostrarMensaje("No existe una actividad con ese ID: ");
+                }
+            }
+        } else {
+            mostrarMensaje("No hay actividades para mostrar.");
+            sc.nextLine();
         }
     }
 
@@ -209,34 +221,37 @@ public class VistaActividad {
         System.out.println("--- REGISTRAR AVANCE ---");
         System.out.println("Actividades Pendientes: ");
         mostrarListaActividades(cA.getPendientes());
-        System.out.print("Seleccione un ID: ");
-        int id = sc.nextInt();
-        if(id!=0){
-        Actividad a = cA.seleccionarActividad(id, cA.getPendientes());
-        System.out.println("Ha seleccionado: "+a.getNombre());
-        System.out.println("Avance: "+a.getProgreso());
-        System.out.print("Ingrese el nuevo avance (0-100): ");
-        int avance = sc.nextInt();
-        sc.nextLine();
-        MensajeUsuario m = cA.cambiarProgreso(id, avance);
-        mostrarMensaje(m.toString());
+        if(cA.getPendientes().size()>0){
+            System.out.print("Seleccione un ID de una actividad: ");
+            int id = sc.nextInt();
+            if(id!=0){
+                Actividad a = cA.seleccionarActividad(id, cA.getPendientes());
+                System.out.println("Ha seleccionado: "+a.getNombre());
+                System.out.println("Avance: "+a.getProgreso());
+                System.out.print("Ingrese el nuevo avance (0-100): ");
+                int avance = sc.nextInt();
+                sc.nextLine();
+                MensajeUsuario m = cA.cambiarProgreso(id, avance);
+                mostrarMensaje(m.toString());
+            } 
         }
-        
     }
 
     public void eliminarActividad(){
         System.out.println("--- ELIMINAR ACTIVIDAD ---");
-        System.out.println("Seleccione el ID de la actividad a eliminar: ");
         mostrarListaActividades(cA.getPendientes());
-        int id = sc.nextInt();
-        sc.nextLine();
-        MensajeUsuario m = cA.eliminarActividad(id);
-        mostrarMensaje(m.toString());
+        if(cA.getPendientes().size()>0){
+            System.out.println("Seleccione el ID de la actividad a eliminar: ");
+            int id = sc.nextInt();
+            sc.nextLine();
+            MensajeUsuario m = cA.eliminarActividad(id);
+            mostrarMensaje(m.toString());
+        }
     }
 
     public void mostrarMensaje(String mensaje){
         System.out.println(mensaje); 
-        System.out.println("Presione ENTER para continuar");
+        System.out.print("Presione [ENTER] para continuar");
         sc.nextLine();
     }
 }

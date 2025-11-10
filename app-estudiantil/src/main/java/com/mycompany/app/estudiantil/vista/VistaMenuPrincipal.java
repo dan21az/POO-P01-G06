@@ -1,6 +1,14 @@
 package com.mycompany.app.estudiantil.vista;
 
+import java.util.*;
+
 public class VistaMenuPrincipal {
+
+    private Scanner sc;
+
+    public VistaMenuPrincipal(){
+        this.sc = new Scanner(System.in);
+    }
 
     public void menuPrincipal(){
         System.out.println("--- F O C U S  A P P ---");
@@ -21,5 +29,10 @@ public class VistaMenuPrincipal {
         System.out.println("Saliendo...");
     }
 
+    public void noDisponible(){
+        System.out.println("Esta opción aún no está disponible");
+        System.out.println("Presiona [Enter] para volver");
+        sc.nextLine();
+    }
 
 }

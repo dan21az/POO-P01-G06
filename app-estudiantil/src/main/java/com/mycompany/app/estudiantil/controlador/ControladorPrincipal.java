@@ -37,11 +37,15 @@ public class ControladorPrincipal {
           case 3:
             controladora.iniciar();
             break;
-            // Control hidratacion
           case 4:
             //Control Sostenibilidad
+            mP.noDisponible();
+            sc.nextLine();
+            break;
           case 5:
             //Juego Memoria;
+            mP.noDisponible();
+            sc.nextLine();
           case 6:
             mP.salir();
             break;

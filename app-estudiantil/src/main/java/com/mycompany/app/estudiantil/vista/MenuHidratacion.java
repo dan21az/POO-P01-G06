@@ -41,7 +41,7 @@ public class MenuHidratacion {
         System.out.println("] " + String.format("%.1f", porcentaje) + "%");
     }
     public void esperarEnter() {
-        System.out.println("Presione[Enter] para continuar...");
+        System.out.println("Presione [Enter] para continuar...");
         sc.nextLine();
         sc.nextLine();
         }
