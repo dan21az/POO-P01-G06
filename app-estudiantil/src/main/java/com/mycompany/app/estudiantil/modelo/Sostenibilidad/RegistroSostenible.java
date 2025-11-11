@@ -1,4 +1,4 @@
-package com.mycompany.app.estudiantil.modelo.Sostenibilidad;
+package com.mycompany.app.estudiantil.modelo.sostenibilidad;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

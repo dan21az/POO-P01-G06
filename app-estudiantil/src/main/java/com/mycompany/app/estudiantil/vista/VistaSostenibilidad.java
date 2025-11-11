@@ -1,5 +1,5 @@
 package com.mycompany.app.estudiantil.vista;
-import com.mycompany.app.estudiantil.modelo.Sostenibilidad.*;
+import com.mycompany.app.estudiantil.modelo.sostenibilidad.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 

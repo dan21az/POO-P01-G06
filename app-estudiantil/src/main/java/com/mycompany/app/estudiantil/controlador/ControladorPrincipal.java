@@ -3,20 +3,26 @@ package com.mycompany.app.estudiantil.controlador;
 import java.util.Scanner;
 
 import com.mycompany.app.estudiantil.modelo.Hidratacionn.*;
+import com.mycompany.app.estudiantil.modelo.sostenibilidad.Sostenibilidad;
 import com.mycompany.app.estudiantil.vista.*;
 
 public class ControladorPrincipal {
 
-    Hidratacion modelo= new Hidratacion();
-    MenuHidratacion vista = new MenuHidratacion();
-    HidratacionControladora controladora = new HidratacionControladora(modelo,vista);
+    Hidratacion modeloH= new Hidratacion();
+    Sostenibilidad modeloS = new Sostenibilidad();
 
-    ControladorActividad cA = new ControladorActividad();
-    ControladorSesionEnfoque cS = new ControladorSesionEnfoque(cA);
+    VistaSostenibilidad vistaS = new VistaSostenibilidad();
 
-    VistaMenuPrincipal mP = new VistaMenuPrincipal();
-    VistaActividad mA = new VistaActividad(cA);
-    VistaSesionEnfoque mS = new VistaSesionEnfoque(cS,cA);
+    MenuHidratacion vistaH = new MenuHidratacion();
+    HidratacionControladora controladorH = new HidratacionControladora(modeloH,vistaH);
+
+    ControladorActividad controladorA = new ControladorActividad();
+    ControladorSesionEnfoque controladorSE = new ControladorSesionEnfoque(controladorA);
+    ControladorSostenibilidad controladorS = new ControladorSostenibilidad(modeloS, vistaS);
+
+    VistaMenuPrincipal vistaP = new VistaMenuPrincipal();
+    VistaActividad vistaA = new VistaActividad(controladorA);
+    VistaSesionEnfoque vistaSE = new VistaSesionEnfoque(controladorSE,controladorA);
 
     Scanner sc = new Scanner(System.in);
 
@@ -24,33 +30,32 @@ public class ControladorPrincipal {
     int opcion=0;
     public void menuPrincipal(){
     do {
-        mP.menuPrincipal();
+        vistaP.menuPrincipal();
         opcion = sc.nextInt();
     
       switch (opcion){
            case 1:
-            mA.menuGestion();
+            vistaA.menuGestion();
             break;
           case 2:
-            mS.menuSesion(fecha);
+            vistaSE.menuSesion(fecha);
             break;
           case 3:
-            controladora.iniciar();
+            controladorH.iniciar();
             break;
           case 4:
             //Control Sostenibilidad
-            mP.noDisponible();
-            sc.nextLine();
+            controladorS.menuSostenibilidad();;
             break;
           case 5:
             //Juego Memoria;
-            mP.noDisponible();
+            vistaP.noDisponible();
             sc.nextLine();
           case 6:
-            mP.salir();
+            vistaP.salir();
             break;
           default:
-              mP.noValido();
+              vistaP.noValido();
               break;
       }
     } while (opcion != 6);

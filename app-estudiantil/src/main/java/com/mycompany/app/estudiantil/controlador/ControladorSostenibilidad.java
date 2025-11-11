@@ -1,13 +1,10 @@
 package com.mycompany.app.estudiantil.controlador;
-import com.mycompany.app.estudiantil.modelo.Sostenibilidad.*;
+import com.mycompany.app.estudiantil.modelo.sostenibilidad.*;
 import com.mycompany.app.estudiantil.vista.*;
-
-
-public class ControladorSostenibilidad {
-  import java.util.ArrayList;
-
+import java.util.ArrayList;
 
 public class ControladorSostenibilidad {
+
     private Sostenibilidad modelo;
     private VistaSostenibilidad vista;
 
@@ -60,4 +57,4 @@ public class ControladorSostenibilidad {
     }
 }
 
-}
+
