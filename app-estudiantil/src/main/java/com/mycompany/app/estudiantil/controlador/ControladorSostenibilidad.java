@@ -1,5 +1,7 @@
 package com.mycompany.app.estudiantil.controlador;
-import
+import com.mycompany.app.estudiantil.modelo.Sostenibilidad.*;
+import com.mycompany.app.estudiantil.vista.*;
+
 
 public class ControladorSostenibilidad {
   import java.util.ArrayList;
