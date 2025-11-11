@@ -1,3 +1,4 @@
+package com.mycompany.app.estudiantil.modelo.Sostenibilidad;
 import java.util.ArrayList;
 
 public class Sostenibilidad {
