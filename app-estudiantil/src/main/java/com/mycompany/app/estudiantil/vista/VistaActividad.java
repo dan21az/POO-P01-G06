@@ -155,7 +155,6 @@ public class VistaActividad {
             }
         } else{
             mostrarMensaje("No hay actividad para mostrar");
-            sc.nextLine();
         }
     }
 
@@ -224,17 +223,22 @@ public class VistaActividad {
         if(cA.getPendientes().size()>0){
             System.out.print("Seleccione un ID de una actividad: ");
             int id = sc.nextInt();
-            if(id!=0){
-                Actividad a = cA.seleccionarActividad(id, cA.getPendientes());
-                System.out.println("Ha seleccionado: "+a.getNombre());
-                System.out.println("Avance: "+a.getProgreso());
-                System.out.print("Ingrese el nuevo avance (0-100): ");
-                int avance = sc.nextInt();
-                sc.nextLine();
-                MensajeUsuario m = cA.cambiarProgreso(id, avance);
-                mostrarMensaje(m.toString());
-            } 
+            if(cA.getListaActividades().size()>id){
+                if(id!=0){
+                    Actividad a = cA.seleccionarActividad(id, cA.getPendientes());
+                    System.out.println("Ha seleccionado: "+a.getNombre());
+                    System.out.println("Avance: "+a.getProgreso());
+                    System.out.print("Ingrese el nuevo avance (0-100): ");
+                    int avance = sc.nextInt();
+                    sc.nextLine();
+                    MensajeUsuario m = cA.cambiarProgreso(id, avance);
+                    mostrarMensaje(m.toString());
+                } else {
+                    mostrarMensaje("No existe una actividad con ese ID: ");
+                }
+            }
         }
+        sc.nextLine();
     }
 
     public void eliminarActividad(){
@@ -244,9 +248,14 @@ public class VistaActividad {
             System.out.println("Seleccione el ID de la actividad a eliminar: ");
             int id = sc.nextInt();
             sc.nextLine();
-            MensajeUsuario m = cA.eliminarActividad(id);
-            mostrarMensaje(m.toString());
+            if(cA.getListaActividades().size()>id){
+                MensajeUsuario m = cA.eliminarActividad(id);
+                mostrarMensaje(m.toString());
+            } else {
+            mostrarMensaje("No existe una actividad con ese ID: ");
+            }
         }
+        sc.nextLine();
     }
 
     public void mostrarMensaje(String mensaje){

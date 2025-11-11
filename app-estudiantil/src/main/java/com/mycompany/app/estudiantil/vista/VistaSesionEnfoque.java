@@ -49,6 +49,7 @@ public class VistaSesionEnfoque {
         System.out.println("--- INICIAR POMODORO ---");
         System.out.println("Seleccione la Actividad a trabajar:");
         v.mostrarListaActividades(ca.filtrarPorCategoria("ACADEMICA"));
+        if(ca.filtrarPorCategoria("ACADEMICA").size()!= 0){
         System.out.print("Ingrese ID de la actividad (o 0 para salir): ");
         int id = sc.nextInt();
         if(id !=0){
@@ -62,24 +63,27 @@ public class VistaSesionEnfoque {
                 mostrarMensaje(m.toString());
             }
             finalizarSesion();
-        }
+        }}
     }
 
     public void iniciarDeepWork(String fecha){
         System.out.println("--- INICIAR DeepWork ---");
         System.out.println("Seleccione la Actividad a trabajar: ");
         v.mostrarListaActividades(ca.filtrarPorCategoria("ACADEMICA"));
-        System.out.print("Ingrese ID de la actividad (o 0 para salir): ");
-        int id = sc.nextInt();
-        if(id!=0){
-        Actividad a = ca.seleccionarActividad(id, ca.getListaActividades());
-        Academica b = (Academica) a;
-        MensajeUsuario m = c.iniciarDeepWork(fecha, b);
-        if (m!=null){
-            mostrarMensaje(m.toString());
-          }
+        if(ca.filtrarPorCategoria("ACADEMICA").size()!= 0){
+            System.out.print("Ingrese ID de la actividad (o 0 para salir): ");
+            int id = sc.nextInt();
+            if(id!=0){
+                Actividad a = ca.seleccionarActividad(id, ca.getListaActividades());
+                Academica b = (Academica) a;
+                MensajeUsuario m = c.iniciarDeepWork(fecha, b);
+                if (m!=null){
+                mostrarMensaje(m.toString());
+                }
+            finalizarSesion();
+            }
         }
-        finalizarSesion();
+
     }
 
     public void finalizarSesion(){
