@@ -54,7 +54,7 @@ public class ControladorActividad {
             return;
         }
         vista.visualizarActividades(listaActividades);
-        // 3. Seleccionar actividad para detalle
+        // Seleccionar actividad para detalle
         int idSeleccionado = vista.seleccionarActividad("mostrar en detalle");
         if (idSeleccionado != 0) {
             Actividad a = seleccionarActividad(idSeleccionado, listaActividades);
@@ -100,12 +100,12 @@ public class ControladorActividad {
 
     public void registrarAvance() {
         vista.encabezado("\n--- REGISTRAR AVANCE ---");
-        // 1. Obtener solo actividades pendientes (progreso < 100)
+        // Obtener solo actividades pendientes (progreso < 100)
         ArrayList<Actividad> pendientes = filtrarYMostrarActividades(listaActividades, "ACADEMICA", true);
         if (pendientes.isEmpty()) {
             vista.mostrarMensaje("No hay actividades pendientes para registrar avance.");
             return;}
-        // 2. Mostrar lista y pedir ID
+        // Mostrar lista y pedir ID
         vista.listarActividadesPendientesParaAvance(pendientes);
         int idSeleccionado = vista.seleccionarActividad("registrar avance");
         if (idSeleccionado != 0) {

@@ -68,14 +68,12 @@ public class ControladorSesionEnfoque {
                 Academica b = (Academica) a;
                 SesionEnfoque s = b.getSesiones().get(b.getSesiones().size()-1);
                 Pomodoro p = (Pomodoro) s;
-            // 1. INICIO DEL TRABAJO
+            // INICIO DEL TRABAJO
                 vista.mostrarInicioTrabajo(a.getNombre(), p.getTipoTecnica(), p.getCicloActual(), p.getCiclos(), 25); 
-            // 2. PAUSA DE SIMULACIÓN (Solicita ENTER para terminar)
+            // PAUSA DE SIMULACIÓN (Solicita ENTER para terminar)
                 vista.solicitarFinalizacionTrabajo(25, p.getTipoTecnica());
-            // 3. LÓGICA DE NEGOCIO (Guardar Progreso)
-                finalizarSesion(p); // Llama a guardarProgreso()
-            // 4. FIN DE TRABAJO E INICIO DE DESCANSO
-            // El método de la vista gestiona el mensaje de fin de trabajo, el guardado y el prompt de ENTER para el descanso.
+                finalizarSesion(p);
+            // FIN DE TRABAJO E INICIO DE DESCANSO.
                 vista.mostrarFinTrabajoYDescanso(p.getTipoTecnica(), 5);     
         } else {
             vista.mostrarMensaje("ID no válido o la actividad no es académica/pendiente.");
@@ -102,15 +100,14 @@ public class ControladorSesionEnfoque {
                 Academica b = (Academica) a;
                 SesionEnfoque s = b.getSesiones().get(b.getSesiones().size()-1);
                 DeepWork d = (DeepWork) s;
-                // 1. INICIO DEL TRABAJO (90 minutos)
+                // INICIO DEL TRABAJO (90 minutos)
                 vista.mostrarInicioTrabajo(a.getNombre(), d.getTipoTecnica(), 1, 1, 90);
-                // 2. PAUSA DE SIMULACIÓN (Solicita ENTER para terminar)
+                // PAUSA DE SIMULACIÓN (Solicita ENTER para terminar)
                 vista.solicitarFinalizacionTrabajo(90, d.getTipoTecnica());
-                // 3. LÓGICA DE NEGOCIO (Guardar Progreso)
-                finalizarSesion(d); // Llama a guardarProgreso()
-                // 4. MENSAJE FINAL (No hay descanso)
+                finalizarSesion(d); 
+                // MENSAJE FINAL (No hay descanso)
                 vista.mostrarFinTrabajoYDescanso(d.getTipoTecnica(), 0);
-                vista.mostrarMensaje("Sesión de Deep Work completada."); // Mensaje final limpio   
+                vista.mostrarMensaje("Sesión de Deep Work completada.");
             } else {
                 vista.mostrarMensaje("ID no válido o la actividad no es académica/pendiente.");
             }
@@ -138,15 +135,14 @@ public class ControladorSesionEnfoque {
     }
 
     public void finalizarSesion(SesionEnfoque s){
-        guardarProgreso(s);
+        //Extrae la actividad
+        Actividad a = s.getActividad();
+        //Actualiza el progreso segun el porcentaje, como es una simulación guarda el 25% por defecto
+        int i = a.getProgreso() + 25;
+        cA.cambiarProgreso(a.getId(),i);
+        a.actualizarEstado();
     }
 
-    public void guardarProgreso(SesionEnfoque s){
-        int t = 100;
-        cA.cambiarProgreso(s.getActividad().getId(),t);
-        s.getActividad().actualizarEstado();
-    
-    }
     
     public String fecha(){
     LocalDate hoy = LocalDate.now();

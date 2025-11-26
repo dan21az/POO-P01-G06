@@ -14,7 +14,6 @@ public class VistaActividad {
         this.sc = new Scanner(System.in);
     }
     
-    // --- GENERALES ---
     public void mostrarMensaje(String mensaje){
         System.out.println(mensaje); 
         System.out.print("Presione [ENTER] para continuar...");
@@ -45,7 +44,7 @@ public class VistaActividad {
         try {
             opcion = Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
-            opcion = -1; // Opción inválida
+            opcion = -1;
         }
         return opcion;
     }

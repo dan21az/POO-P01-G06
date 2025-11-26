@@ -59,8 +59,8 @@ public class ControladorPrincipal {
       controladorA.crearActividadAcademica("Examen","10 dic", "MEDIA", "EXAMEN", 2,0, "Examen de Comunicación", "Comunicación");
       controladorA.crearActividadPersonal("Cita Médica", "30 Nov", "ALTA", "CITAS", 1,0, "Chequeo rutinario", "Consultorio 12");
 
-      controladorSE.crearPomodoro("10 Nov", controladorA.getListaActividades().get(0));
-      controladorSE.crearPomodoro("12 Nov", controladorA.getListaActividades().get(0));
+      controladorSE.crearPomodoro("10 nov", controladorA.getListaActividades().get(0));
+      controladorSE.crearPomodoro("12 nov", controladorA.getListaActividades().get(0));
     }
 }
 
