@@ -43,9 +43,8 @@ public class SesionEnfoque {
         return actividad;
     }
 
-    public void incrementarTiempo(int minutos){
-        if (minutos>=0)
-        this.contadorTiempo+=minutos;
+    public void setContadorTiempo(int i){
+        this.contadorTiempo = i;
     }
 
     public String toString(){

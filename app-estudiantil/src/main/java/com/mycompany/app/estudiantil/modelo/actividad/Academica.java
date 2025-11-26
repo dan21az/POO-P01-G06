@@ -8,8 +8,8 @@ public class Academica extends Actividad{
     private ArrayList<SesionEnfoque> sesiones;
     private String asignatura;
     
-    public Academica(String n, String fV, String p, String t, int tE, int pr, int id, String des, String asig){
-        super(n, "ACADEMICA", fV, p, t, tE, pr, id, des);
+    public Academica(String n,String c ,String fV, String p, String t, int tE, int pr, int id, String des, String asig){
+        super(n, c, fV, p, t, tE, pr, id, des);
         this.asignatura = asig;
         this.sesiones = new ArrayList<>();
     }
