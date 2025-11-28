@@ -5,20 +5,39 @@ import com.mycompany.app.estudiantil.modelo.actividad.*;
 
 import java.util.*;
 
+/**
+ * Clase ControladorActividad
+ * Actúa como el controlador en el patrón MVC, manejando la lógica de la aplicación
+ * estudiantil para la gestión de actividades (Académicas y Personales).
+ * Interactúa con el Modelo (Actividad, Academica, Personal) y la Vista (VistaActividad, MensajeUsuario).
+ */
 public class ControladorActividad {
 
+    // Lista principal para almacenar todas las actividades creadas.
     private ArrayList<Actividad> listaActividades;
+    // Instancia de la clase Vista para manejar la interacción con el usuario.
     private VistaActividad vista;
 
+    /**
+     * Constructor de la clase ControladorActividad.
+     * Inicializa la lista de actividades y la instancia de la vista.
+     */
     public ControladorActividad(){
         this.listaActividades = new ArrayList<>();
         this.vista = new VistaActividad();
     }
 
+    /**
+     * Obtiene la lista completa de actividades.
+     * @return ArrayList<Actividad> La lista de actividades.
+     */
     public ArrayList<Actividad> getListaActividades() {
         return listaActividades;
     }
 
+    /**
+     * Muestra el menú de gestión principal y procesa las opciones seleccionadas por el usuario.
+     */
     public void menuGestion(){
         int opcion = 0;
         do { 
@@ -45,8 +64,11 @@ public class ControladorActividad {
         } while (opcion != 5);
     }
 
-    // --- MÉTODOS ---
-
+// --- Métodos del menú ---
+    
+    /**
+     * Muestra todas las actividades y permite al usuario seleccionar una para ver su detalle.
+     */
     public void visualizarActividades(){
 
         if (listaActividades.isEmpty()) {
@@ -73,6 +95,10 @@ public class ControladorActividad {
         }
     }
 
+    /**
+     * Guía al usuario a través del proceso de creación de una nueva actividad
+     * (Académica o Personal) y la añade a la lista.
+     */
     public void crearActividad(){
         int opcionCategoria = vista.seleccionarCategoria();       
         if(opcionCategoria == 1){ // ACADEMICA
@@ -81,7 +107,7 @@ public class ControladorActividad {
             String asignatura = vista.solicitarAsignatura();
             int tiempo = vista.solicitarTiempoEstimado();
             
-            MensajeUsuario m = crearActividadAcademica(d[0], d[2], d[3], tipo, tiempo, 0, d[1], asignatura);
+            MensajeUsuario m = crearActividadAcademica(d[0], d[2], d[3], tipo, tiempo, 0,"No iniciada" ,d[1], asignatura);
             vista.mostrarMensaje(m.toString());
         
         } else if(opcionCategoria == 2){ // PERSONAL
@@ -90,18 +116,21 @@ public class ControladorActividad {
             String lugar = vista.solicitarLugar();
             int tiempo = vista.solicitarTiempoEstimado();
             
-            MensajeUsuario m = crearActividadPersonal(d[0], d[2], d[3], tipo, tiempo, 0, d[1], lugar);
+            MensajeUsuario m = crearActividadPersonal(d[0], d[2], d[3], tipo, tiempo, 0, "No Iniciada",d[1], lugar);
             vista.mostrarMensaje(m.toString());
-
+    
         } else {
              vista.mostrarMensaje("Opción no válida, volviendo al menú.");
         }
     }
 
+    /**
+     * Permite al usuario seleccionar una actividad pendiente y actualizar su porcentaje de progreso.
+     */
     public void registrarAvance() {
         vista.encabezado("\n--- REGISTRAR AVANCE ---");
         // Obtener solo actividades pendientes (progreso < 100)
-        ArrayList<Actividad> pendientes = filtrarYMostrarActividades(listaActividades, "ACADEMICA", true);
+        ArrayList<Actividad> pendientes = filtrarActividades(listaActividades, "ACADEMICA", true);
         if (pendientes.isEmpty()) {
             vista.mostrarMensaje("No hay actividades pendientes para registrar avance.");
             return;}
@@ -112,13 +141,13 @@ public class ControladorActividad {
             Actividad a = seleccionarActividad(idSeleccionado, pendientes); 
             if (a != null) {
                 int nuevoAvance = vista.solicitarNuevoAvance(a);
-                
+                if (nuevoAvance > 0 && nuevoAvance <= 100){
                 if (vista.confirmar("el nuevo avance para el proyecto ID " + a.getId() + " es " + nuevoAvance + "%")) {
-                    MensajeUsuario m = cambiarProgreso(idSeleccionado, nuevoAvance);
+                    MensajeUsuario m = actualizarAvance(a, nuevoAvance);
                     vista.mostrarMensaje(m.toString());
                 } else {
                     vista.mostrarMensaje("Actualización de avance cancelada.");
-                }
+                }} else {vista.mostrarMensaje("Error el porcentaje debe estar entre 0 y 100 ");;}
             } else {
                  vista.mostrarMensaje("ID no válido o la actividad no está pendiente.");
             }
@@ -127,6 +156,9 @@ public class ControladorActividad {
         }
     }
 
+    /**
+     * Permite al usuario seleccionar una actividad para eliminarla de la lista.
+     */
     public void eliminarActividad(){
         vista.encabezado("\n--- ELIMINAR ACTIVIDAD ---");
         ArrayList<Actividad> lista = listaActividades;
@@ -139,7 +171,7 @@ public class ControladorActividad {
             Actividad a = seleccionarActividad(idSeleccionado, lista);
             if (a != null) {
                 if (vista.confirmar("la eliminación de la actividad '" + a.getNombre() + "' (ID " + a.getId() + ")")) {
-                    MensajeUsuario m = eliminaActividad(idSeleccionado);
+                    MensajeUsuario m = eliminaActividad(a);
                     vista.mostrarMensaje(m.toString());
                 } else {
                     vista.mostrarMensaje("Eliminación de actividad cancelada.");
@@ -152,11 +184,20 @@ public class ControladorActividad {
         }
     }
     
-    public ArrayList<Actividad> filtrarYMostrarActividades(ArrayList<Actividad> lista, String categoria, boolean soloPendientes){
+
+    /**
+     * Muestra las opciones y solicita al usuario el tipo de actividad Personal.
+     * @return El String del tipo de actividad Personal seleccionado.
+     */
+    public ArrayList<Actividad> filtrarActividades(ArrayList<Actividad> lista, String categoria, boolean soloPendientes){
+        // Recorrer la lista original
         ArrayList<Actividad> filtradas = new ArrayList<>();
             for (Actividad a : lista) {
+                // Comprobar si cumple el criterio de categoría.
                 boolean cumpleCategoria = (categoria == null || a.getCategoria().equals(categoria));
+                // Comprobar si cumple el criterio de estado (progreso < 100)
                 boolean cumpleEstado = (!soloPendientes || a.getProgreso() < 100);
+                // Si cumple ambos, agregarla a la lista filtrada.
             if (cumpleCategoria && cumpleEstado) {
                 filtradas.add(a);
             }
@@ -164,6 +205,10 @@ public class ControladorActividad {
         return filtradas;
     }
     
+    /**
+     * Muestra las opciones y solicita al usuario el tipo de actividad Personal.
+     * @return El String del tipo de actividad Personal seleccionado.
+     */
     public String seleccionarTipoPersonal() {
         String tipo = null;
         do {
@@ -176,6 +221,10 @@ public class ControladorActividad {
         return tipo;
     }
 
+    /**
+     * Muestra las opciones y solicita al usuario el tipo de actividad Académica.
+     * @return El String del tipo de actividad Académica seleccionado.
+     */
     public String seleccionarTipoAcademico() {
         String tipo = null;
         do {
@@ -188,7 +237,13 @@ public class ControladorActividad {
         return tipo;
     }
 
-    // Otros métodos //
+
+    /**
+     * Busca y retorna una actividad específica por su ID dentro de una lista dada.
+     * @param i El ID de la actividad a buscar.
+     * @param lista La lista en la que se buscará la actividad.
+     * @return La actividad encontrada o null si no se encuentra.
+     */
     public Actividad seleccionarActividad(int i, List <Actividad> lista){
         for(Actividad a: lista){
             if(a.getId() == i){
@@ -198,48 +253,64 @@ public class ControladorActividad {
         return null;
     }
 
-    public MensajeUsuario crearActividadPersonal(String n, String fV, String p, String t, int tE, int pr,String des,String l){
+    /**
+     * Crea una nueva instancia de Actividad Personal, le asigna un ID, la agrega a la lista
+     * y retorna un mensaje de éxito.
+     */
+    public MensajeUsuario crearActividadPersonal(String n, String fV, String p, String t, int tE, int pr, String est ,String des,String l){
+        // Incrementar el contador estático de ID.
         Actividad.aumentarId();
         int id = Actividad.getContadorId();
-        Personal ap = new Personal(n,"PERSONAL",fV, p, t, tE, pr, id,des, l);
+        // Crear la nueva instancia de Personal.
+        Personal ap = new Personal(n,"PERSONAL",fV, p, t, tE, pr, id, est,des, l);
         listaActividades.add(ap);
         return new MensajeUsuario("CREACIÓN EXITOSA", "Actividad Personal '" + n + "' creada con éxito.");
     }
 
-    public MensajeUsuario crearActividadAcademica(String n, String fV, String p, String t, int tE, int pr,String des, String asig){
+    /**
+     * Crea una nueva instancia de Actividad Académica, le asigna un ID, la agrega a la lista
+     * y retorna un mensaje de éxito.
+     */
+    public MensajeUsuario crearActividadAcademica(String n, String fV, String p, String t, int tE, int pr, String est ,String des, String asig){
+        // Incrementar el contador estático de ID.
         Actividad.aumentarId();
         int id = Actividad.getContadorId();
-        Academica ac = new Academica(n,"ACADEMICA",fV, p, t, tE,pr,id,des, asig);
+        // Crear la nueva instancia de Academica.
+        Academica ac = new Academica(n,"ACADEMICA",fV, p, t, tE,pr,id, est,des, asig);
         listaActividades.add(ac);
         return new MensajeUsuario("CREACIÓN EXITOSA", "Actividad Académica '" + n + "' creada con éxito.");
     }
     
-    public MensajeUsuario cambiarProgreso(int id, int nuevoProgreso) {
-        Actividad a = seleccionarActividad(id, listaActividades);
+    /**
+     * Actualiza el progreso de una actividad específica.
+     * @param a La actividad cuyo progreso será actualizado.
+     * @param nuevoProgreso El nuevo porcentaje de progreso (1 a 100).
+     * @return MensajeUsuario con el resultado de la operación.
+     */
+
+    public MensajeUsuario actualizarAvance(Actividad a, int nuevoProgreso) {
         if (a == null){ 
-            return new MensajeUsuario("Error", "No existe actividad con ID: " + id);
+            return new MensajeUsuario("Error", "No existe actividad ese ID: ");
         } else {
-            if (nuevoProgreso < 0 || nuevoProgreso > 100){
+            if (nuevoProgreso <= 0 || nuevoProgreso >= 100){
                 return new MensajeUsuario("Error", "El porcentaje debe estar entre 0 y 100.");
             } else if (nuevoProgreso == 100) {
-                 return completarTarea(id);
+                a.actualizarAvance(nuevoProgreso);
+                 return new MensajeUsuario("Tarea completada", "La actividad '" + a.getNombre() + "' ha sido finalizada.");
             } else {
-                a.setProgreso(nuevoProgreso);
-                a.actualizarEstado();
+                a.actualizarAvance(nuevoProgreso);
                 return new MensajeUsuario("Progreso actualizado", "Nuevo progreso de '" + a.getNombre() + "': " + nuevoProgreso + "%");
             }
         }
     }
 
-    public MensajeUsuario completarTarea(int id){
-        Actividad a = seleccionarActividad(id, listaActividades);
-        a.setProgreso(100);
-        a.setEstado("COMPLETADO");
-        return new MensajeUsuario("Tarea completada", "La actividad '" + a.getNombre() + "' ha sido finalizada.");
-    }
+    /**
+     * Elimina una actividad de la lista principal.
+     * @param a La actividad a eliminar.
+     * @return MensajeUsuario con el resultado de la operación.
+     */
 
-    public MensajeUsuario eliminaActividad(int id) {
-        Actividad a = seleccionarActividad(id, listaActividades);
+    public MensajeUsuario eliminaActividad(Actividad a) {
         if (a == null) {
             return new MensajeUsuario("Error", "ID no válido o actividad no encontrada.");
         } else {

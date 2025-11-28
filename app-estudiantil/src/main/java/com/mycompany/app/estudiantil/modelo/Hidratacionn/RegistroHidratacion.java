@@ -7,7 +7,7 @@ public class RegistroHidratacion {
     private LocalDate fecha;
     private LocalTime hora;
     private int cantidadAgua; 
-
+//Constructores basicos getters y setters
     public RegistroHidratacion(LocalDate fecha, LocalTime hora, int cantidadAgua) {
         this.fecha = fecha;
         this.hora = hora;
@@ -31,6 +31,7 @@ public class RegistroHidratacion {
     public void setCantidadAgua(int cantidadAgua) {
         this.cantidadAgua = cantidadAgua;
     }
+    //sobrescritura del metodo toString para mostrar la hora y la cantidad de agua ingerida
     @Override
     public String toString() {
         return "- " + hora + ": " + cantidadAgua + " ml";

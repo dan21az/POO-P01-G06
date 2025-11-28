@@ -12,6 +12,11 @@ public class RegistroSostenible {
         this.acciones = new ArrayList<>();
         this.puntos = 0;
     }
+    public RegistroSostenible(LocalDate fecha) {
+        this.fecha = fecha;
+        this.acciones = new ArrayList<>();
+        this.puntos = 0;
+    }
 
     public void agregarAccion(String a) {
         acciones.add(a);

@@ -28,5 +28,14 @@ public class Tablero {
     public Carta getCarta(int indice) {
         return cartas[indice];
     }
+    public void mostrarPares(){
+        System.out.println("\n--- PARES DEL TABLERO ---");
+        for (int i = 0; i < 16; i++){
+            for (int j = i + 1; j < 16; j++){
+                if (cartas[i].getContenido().equals(cartas[j].getContenido())) {
+                    System.out.println((i + 1) + " - " + (j + 1) + " - " + cartas[i].getContenido());
+                }
+            }
+        }
+    }
 }
-

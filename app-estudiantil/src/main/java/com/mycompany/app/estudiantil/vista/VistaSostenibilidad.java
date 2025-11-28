@@ -17,13 +17,14 @@ public class VistaSostenibilidad {
         System.out.println("2. Volver al menú principal");
 
         System.out.print("Seleccione una opción: ");
+        //Algoritmo para evitar error de compilacion si el usuario ingresa un dato no entero
         try {
             return Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
             return 0;
         }
     }
-
+    //menu de Registrar Accion
     public ArrayList<Integer> mostrarSubmenuAcciones() {
         System.out.println("\n--- REGISTRO DIARIO DE SOSTENIBILIDAD (" + java.time.LocalDate.now() + ") ---");
         System.out.println("Marque las acciones que realizó hoy:");
@@ -46,7 +47,7 @@ public class VistaSostenibilidad {
         
         
     }
-
+    //Metodo para mostrar todas las acciones registradas al final de interaccion
     public void mostrarConfirmacionRegistro(RegistroSostenible r) {
         System.out.println("\n----------------------------------------");
         System.out.println("Acciones de sostenibilidad registradas:");
@@ -56,7 +57,7 @@ public class VistaSostenibilidad {
         System.out.println("Puntos de Sostenibilidad Acumulados: +" + r.getPuntos());
         System.out.println("----------------------------------------");
     }
-
+    //Informe semanal (Muestra la informacion de Sostenibilidad)
     public void mostrarInformeSemanal(ArrayList<RegistroSostenible> registros) {
         LocalDate hoy = LocalDate.now();
         LocalDate lunes = hoy.with(java.time.DayOfWeek.MONDAY);
@@ -93,14 +94,14 @@ public class VistaSostenibilidad {
         System.out.println("\n**Tip Ecológico de la Semana:** Lleva siempre tu termo o botella reutilizable ");
         System.out.println("-------------------------------------------------------------");
     }
-
+    //metodo para contar los dias en que se cumplieron las 4 acciones 
     private int contarDiasCompletos(ArrayList<RegistroSostenible> registros) {
         int cont = 0;
         for (RegistroSostenible r : registros)
             if (r.getAcciones().size() == 4) cont++;
         return cont;
     }
-
+    //metodos para para añadir la interaccion de enter y usuario
     public void pausa() {
         System.out.print("\nPresione [ENTER] para continuar...");
         sc.nextLine();

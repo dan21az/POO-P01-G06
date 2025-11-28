@@ -1,6 +1,12 @@
 package com.mycompany.app.estudiantil.modelo.actividad;
 
+/**
+ * Clase base Actividad. 
+ * Representa una actividad genérica (padre) que puede ser Académica o Personal.
+ * Contiene los atributos comunes a todas las actividades y la lógica para el control de ID y progreso.
+ */
 public class Actividad {
+    // --- Atributos de Instancia (Características de cada actividad) ---
     private String nombre;
     private String categoria;
     private String fechaVencimiento;
@@ -12,12 +18,23 @@ public class Actividad {
     private String estado;
     private String descripción;
 
-
-
+    // Contador estático para asignar IDs únicos automáticamente.    
     private static int contadorId;
 
-
-    public Actividad(String n, String c, String fV, String p, String t, int tE, int pr, int id, String des) {
+/**
+     * Constructor de la clase Actividad.
+     * @param n Nombre de la actividad.
+     * @param c Categoría (ACADEMICA/PERSONAL).
+     * @param fV Fecha de vencimiento.
+     * @param p Prioridad.
+     * @param t Tipo de actividad.
+     * @param tE Tiempo estimado.
+     * @param pr Progreso inicial.
+     * @param id ID asignado.
+     * @param est Estado inicial.
+     * @param des Descripción.
+     */
+    public Actividad(String n, String c, String fV, String p, String t, int tE, int pr, int id, String est,String des) {
         this.nombre = n;
         this.categoria = c;
         this.fechaVencimiento = fV;
@@ -26,8 +43,34 @@ public class Actividad {
         this.tiempoEstimado = tE;
         this.progreso = pr;
         this.id = id;
-        this.estado = "No Iniciado";
+        this.estado = est;
         this.descripción = des;
+    }
+
+    // --- Métodos Setter (Mutadores) ---
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setFechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setDescripción(String descripción) {
+        this.descripción = descripción;
     }
 
     public void setTiempoEstimado(int tiempoEstimado) {
@@ -42,18 +85,20 @@ public class Actividad {
         this.id = id;
     }
 
-    public static void setContadorId(int contadorId) {
-        Actividad.contadorId = contadorId;
-    }
-
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    // --- Métodos Getter (Accesores) ---
 
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     * Obtiene el valor actual del contador de IDs.
+     * @return El último ID asignado.
+     */
     public static int getContadorId() {
         return contadorId;
     }
@@ -93,19 +138,31 @@ public class Actividad {
     public String getDescripción() {
         return descripción;
     }
+
+// --- Métodos de Lógica ---
     
-    public void actualizarEstado(){
-        if(progreso<100  && progreso !=0 ){
+    /**
+     * Actualiza el progreso de la actividad y ajusta el estado en consecuencia.
+     * @param i El nuevo valor del progreso (de 0 a 100).
+     */
+    public void actualizarAvance(int i){
+        // Validar que el progreso se encuentre dentro del rango válido [0, 100].
+        if(progreso<=100  && progreso >= 0 ){
+            progreso = i;
             estado = "En curso";
+            // Lógica para actualizar el estado automáticamente
+            if(progreso ==100){
+            estado = "Completo";
+            } else if(progreso == 0){
+            estado = "No iniciado";
+            }
         };
     }
 
+    /**
+     * Incrementa el contador estático para generar el ID de la siguiente actividad.
+     */
     public static void aumentarId(){
         contadorId++;
     }
-
-    public static void disminuirId(){
-        contadorId--;
-    }
-
 }

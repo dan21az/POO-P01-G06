@@ -7,12 +7,12 @@ public class ControladorSostenibilidad {
 
     private Sostenibilidad modelo;
     private VistaSostenibilidad vista;
-
+    //Constructor
     public ControladorSostenibilidad(Sostenibilidad modelo, VistaSostenibilidad vista) {
         this.modelo = modelo;
         this.vista = vista;
     }
-
+    //Controlador del menu de sostenibilidad
     public void menuSostenibilidad() {
         int opcion;
         boolean b =true;
@@ -30,7 +30,7 @@ public class ControladorSostenibilidad {
             }
         } while (b);
     }
-
+    //Metodo para registrar Accion
     private void registrarAccionesDelDia() {
         RegistroSostenible registro = new RegistroSostenible();
         ArrayList<String> acciones = new ArrayList<>();
@@ -59,8 +59,8 @@ public class ControladorSostenibilidad {
                 bandera=false;
             }
         }
-        for (String a : acciones) registro.agregarAccion(a);
-        modelo.agregarRegistro(registro);
+        for (String a : acciones) registro.agregarAccion(a);  //añadir cada accion registrada a registro
+        modelo.agregarRegistro(registro); //añadir a Sostenibilidad (modelo)
         vista.mostrarConfirmacionRegistro(registro);
         vista.pausarParaInforme();
         vista.mostrarInformeSemanal(modelo.getRegistros());
@@ -69,4 +69,5 @@ public class ControladorSostenibilidad {
     }
     
 }
+
 

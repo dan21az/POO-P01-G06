@@ -11,6 +11,10 @@ public class ControladorJuegoMemoria {
         public void iniciarJuego(){
 
         vista.mostrarMensaje("=== JUEGO DE MEMORIA ECOLÓGICO ===");
+        //Mostrar pares para comprobación de funcionamiento
+        System.out.println("\n========= PARES REALES (PARA PROBAR FUNCIONAMIENTO) =========");
+        juego.getTablero().mostrarPares();
+        System.out.println("========================================\n");
 
         int turno = 1;
 
@@ -18,6 +22,8 @@ public class ControladorJuegoMemoria {
 
             System.out.println("\n--- TURNO "+ turno + " | PARES ENCONTRADOS: " + juego.getParesEncontrados() + "/8");
             vista.mostrarTablero(juego.getTablero());
+            
+
 
             // PRIMERA CARTA
             int c1 = vista.pedirCarta("Número de la primera carta: ");
