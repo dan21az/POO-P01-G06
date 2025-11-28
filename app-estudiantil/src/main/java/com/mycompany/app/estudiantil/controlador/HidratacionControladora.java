@@ -11,7 +11,7 @@ public class HidratacionControladora {
         this.modelo = modelo;
         this.vista = vista;
     }
-
+//Hace el bucle del menu de hidratacion y llama a los metodos necesarios segun la opcion elegida
     public void iniciar() {
         int opcion;
         do {
@@ -20,21 +20,29 @@ public class HidratacionControladora {
                 case 1 -> {
                     int cantidad = vista.leerCantidad();
                     modelo.registrarIngesta(cantidad);
-                    vista.mostrarProgreso(modelo.getTotalHoy(), modelo.getMetaDiaria());
+                     vista.mostrarRegistroAñadido(cantidad);
+                    vista.mostrarProgresoRapido(modelo.getTotalHoy(), modelo.getMetaDiaria());
                     vista.esperarEnter();
                 }
                 case 2 -> {
-                    int meta = vista.leerMeta();
-                    modelo.establecerMeta(meta);
-                    vista.mostrarProgreso(modelo.getTotalHoy(), modelo.getMetaDiaria());
+                     int nuevaMeta = vista.leerMeta(modelo.getMetaDiaria());
+                    if (vista.confirmarMeta(nuevaMeta)) {
+                        modelo.establecerMeta(nuevaMeta);
+                        System.out.println("Meta diaria actualizada a " + nuevaMeta + " ml con exito.");
+                        vista.mostrarProgresoActualizado(modelo.getTotalHoy(), modelo.getMetaDiaria());
+                        
+                    } else {
+                        System.out.println("Meta NO modificada.");
+                    }
                     vista.esperarEnter();
                 }
                 case 3 -> {vista.mostrarProgreso(modelo.getTotalHoy(), modelo.getMetaDiaria());
+                    vista.mostrarHistorial(modelo.getRegistrosDeHoy());
                     vista.esperarEnter();
                 }
                 case 4 -> System.out.println("Volviendo al menú principal...");
                 default -> System.out.println("Opción inválida.");
-            }
+            }//por defecto se puso que al presionar cualquier otra tecla se muestre opcion invalida
         } while (opcion != 4);
     }
 }
