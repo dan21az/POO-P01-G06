@@ -79,8 +79,16 @@ public class ControladorPrincipal {
       // Crear actividad personal de ejemplo
       controladorA.crearActividadPersonal("Cita Médica", "30 Nov", "ALTA", "CITAS", 1,0, "No iniciada","Chequeo rutinario", "Consultorio 12");
 
+<<<<<<< HEAD
       // Registrar sesiones de Pomodoro históricas en el primer proyecto para simular avance
       // Se utiliza getListaActividades().get(0) para obtener la primera actividad (Proyecto 1).
+=======
+<<<<<<< HEAD
+      // Registrar sesiones de Pomodoro históricas en el primer proyecto para simular avance
+      // Se utiliza getListaActividades().get(0) para obtener la primera actividad (Proyecto 1).
+=======
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
+>>>>>>> f2ea20c2d234438c08735be1adc91a6c62c237e4
       controladorSE.crearPomodoro("10 nov", controladorA.getListaActividades().get(0));
       controladorSE.crearPomodoro("12 nov", controladorA.getListaActividades().get(0));
     }

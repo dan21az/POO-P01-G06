@@ -130,7 +130,15 @@ public class ControladorActividad {
     public void registrarAvance() {
         vista.encabezado("\n--- REGISTRAR AVANCE ---");
         // Obtener solo actividades pendientes (progreso < 100)
+<<<<<<< HEAD
         ArrayList<Actividad> pendientes = filtrarActividades(listaActividades, "ACADEMICA", true);
+=======
+<<<<<<< HEAD
+        ArrayList<Actividad> pendientes = filtrarActividades(listaActividades, "ACADEMICA", true);
+=======
+        ArrayList<Actividad> pendientes = filtrarYMostrarActividades(listaActividades, "ACADEMICA", true);
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
+>>>>>>> f2ea20c2d234438c08735be1adc91a6c62c237e4
         if (pendientes.isEmpty()) {
             vista.mostrarMensaje("No hay actividades pendientes para registrar avance.");
             return;}

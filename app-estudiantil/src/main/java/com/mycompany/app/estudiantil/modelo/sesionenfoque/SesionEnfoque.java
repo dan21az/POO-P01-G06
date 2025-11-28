@@ -100,3 +100,4 @@ public class SesionEnfoque {
         actividad.actualizarAvance(progreso);
     }
 }
+

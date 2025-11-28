@@ -38,4 +38,9 @@ public class Tablero {
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> f2ea20c2d234438c08735be1adc91a6c62c237e4
