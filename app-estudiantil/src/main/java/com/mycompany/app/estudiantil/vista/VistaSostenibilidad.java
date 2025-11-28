@@ -24,7 +24,11 @@ public class VistaSostenibilidad {
             return 0;
         }
     }
+<<<<<<< HEAD
     //menu de Registrar Accion
+=======
+
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
     public ArrayList<Integer> mostrarSubmenuAcciones() {
         System.out.println("\n--- REGISTRO DIARIO DE SOSTENIBILIDAD (" + java.time.LocalDate.now() + ") ---");
         System.out.println("Marque las acciones que realizó hoy:");

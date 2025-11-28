@@ -19,10 +19,13 @@ public class VistaActividad {
         this.sc = new Scanner(System.in);
     }
     
+<<<<<<< HEAD
     /**
      * Muestra un mensaje al usuario y pausa la ejecución hasta que se presione ENTER.
      * @param mensaje El mensaje a mostrar.
      */
+=======
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
     public void mostrarMensaje(String mensaje){
         System.out.println(mensaje); 
         System.out.print("Presione [ENTER] para continuar...");

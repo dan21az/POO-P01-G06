@@ -91,11 +91,17 @@ public class ControladorSesionEnfoque {
                 SesionEnfoque s = b.getSesiones().get(b.getSesiones().size()-1);
                 Pomodoro p = (Pomodoro) s;
             // INICIO DEL TRABAJO
+<<<<<<< HEAD
             // SIMULACIÓN DEL CICLO DE TRABAJO
                 vista.mostrarInicioTrabajo(a.getNombre(), p.getTipoTecnica(), p.getCicloActual(), p.getCiclos(), 25); 
             // PAUSA DE SIMULACIÓN Espera una acción del usuario (ENTER) para simular el fin del tiempo.
                 vista.solicitarFinalizacionTrabajo(25, p.getTipoTecnica());
             // Finalizar la sesión (registra el avance por defecto, 25%).
+=======
+                vista.mostrarInicioTrabajo(a.getNombre(), p.getTipoTecnica(), p.getCicloActual(), p.getCiclos(), 25); 
+            // PAUSA DE SIMULACIÓN (Solicita ENTER para terminar)
+                vista.solicitarFinalizacionTrabajo(25, p.getTipoTecnica());
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
                 finalizarSesion(p);
             // FIN DE TRABAJO E INICIO DE DESCANSO.
                 vista.mostrarFinTrabajoYDescanso(p.getTipoTecnica(), 5);     
@@ -134,9 +140,14 @@ public class ControladorSesionEnfoque {
                 vista.mostrarInicioTrabajo(a.getNombre(), d.getTipoTecnica(), 1, 1, 90);
                 // PAUSA DE SIMULACIÓN (Solicita ENTER para terminar)
                 vista.solicitarFinalizacionTrabajo(90, d.getTipoTecnica());
+<<<<<<< HEAD
                 // Finalizar la sesión (registra el avance por defecto, 25%).
                 finalizarSesion(d); 
                 // Muestra el fin del trabajo (tiempo de descanso es 0 en Deep Work).
+=======
+                finalizarSesion(d); 
+                // MENSAJE FINAL (No hay descanso)
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
                 vista.mostrarFinTrabajoYDescanso(d.getTipoTecnica(), 0);
                 vista.mostrarMensaje("Sesión de Deep Work completada.");
             } else {
@@ -186,6 +197,7 @@ public class ControladorSesionEnfoque {
      * @param s La sesión de enfoque que finaliza.
      */
     public void finalizarSesion(SesionEnfoque s){
+<<<<<<< HEAD
         int i = 25; // Define el progreso por defecto que añade una sesión completa.
         s.finalizarSesion(i); // Este método dentro de SesionEnfoque actualizará el progreso de la Actividad asociada.
     }
@@ -194,6 +206,17 @@ public class ControladorSesionEnfoque {
      * Obtiene la fecha actual en formato "d MMM" (ej: 27 Nov).
      * @return String con la fecha formateada.
      */
+=======
+        //Extrae la actividad
+        Actividad a = s.getActividad();
+        //Actualiza el progreso segun el porcentaje, como es una simulación guarda el 25% por defecto
+        int i = a.getProgreso() + 25;
+        cA.cambiarProgreso(a.getId(),i);
+        a.actualizarEstado();
+    }
+
+    
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
     public String fecha(){
     LocalDate hoy = LocalDate.now();
     // Definir el formato de salida.

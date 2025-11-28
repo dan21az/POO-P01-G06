@@ -59,8 +59,13 @@ public class ControladorSostenibilidad {
                 bandera=false;
             }
         }
+<<<<<<< HEAD
         for (String a : acciones) registro.agregarAccion(a);  //añadir cada accion registrada a registro
         modelo.agregarRegistro(registro); //añadir a Sostenibilidad (modelo)
+=======
+        for (String a : acciones) registro.agregarAccion(a);
+        modelo.agregarRegistro(registro);
+>>>>>>> d719903cf6984712fbe696a37151fc3c15aad508
         vista.mostrarConfirmacionRegistro(registro);
         vista.pausarParaInforme();
         vista.mostrarInformeSemanal(modelo.getRegistros());
