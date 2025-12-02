@@ -52,3 +52,9 @@ build/
 .apt_generated/
 .factorypath
 .springBeans
+
+
+# IDEs
+.idea/
+*.iml
+.vscode/
