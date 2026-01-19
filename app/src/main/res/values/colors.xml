@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="verdePrimaryContainer">#bcf0b4</color>
+    <color name="verdeOnPrimaryContainer">#235024</color>
+    <color name="verdeDisable">#9ed49c</color>
+    <color name="amarilloPrimaryContainer">#ffdf9e</color>
+    <color name="amarilloOnPrimaryContainer">#5b4300</color>
+    <color name="amarilloDisable">#e9c16c</color>
+    <color name="azulPrimaryContainer">#d1e4ff</color>
+    <color name="azulOnPrimaryContainer">#194975</color>
+    <color name="celestePrimaryContainer">#a1efff</color>
+    <color name="celesteOnPrimaryContainer">#004e59</color>
+
+    <color name="naranjaPrimary">#F57C00</color>
+    <color name="naranjaPrimaryOn">#ffffff</color>
+
+    <color name="rojoPrimary">#93000a</color>
+    <color name="rojoPrimaryOn">#ffffff</color>
+
+    <color name="verdePrimary">#2E7D32</color>
+    <color name="verdePrimaryOn">#ffffff</color>
+    <color name="verdeSurface">#ECEFE6</color>
+    <color name="verdeOnSurface">#3C6939</color>
+    <color name="verdeBackground">#F6FFF0</color>
+    <color name="verdeOnBackground">#3C6939</color>
+
+    <color name="azulPrimary">#4E5B92</color>
+    <color name="azulOnPrimary">#FFFFFF</color>
+    <color name="azulSurface">#E9E9F3</color>
+    <color name="azulOnSurface">#4E5B92</color>
+    <color name="azulBackground">#FAF8FF</color>
+    <color name="azulOnBackground">#424659</color>
+    <color name="azulTrack">#264E5B92</color>
+
+</resources>

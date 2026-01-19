@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+
+        <activity
+            android:name="com.espol.application.MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+
+        <activity
+            android:name="com.espol.application.AjustesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.espol.application.vistas.actividad.IngresarActividad"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity android:name=".vistas.actividad.EditarActividad"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.espol.application.vistas.actividad.RegistrarAvance"
+            android:exported="false" />
+
+        <activity
+            android:name="com.espol.application.vistas.actividad.DetalleActividad"
+            android:exported="false" />
+
+        <activity
+            android:name="com.espol.application.vistas.actividad.ListaActividades"
+            android:exported="false" />
+
+        <activity
+            android:name="com.espol.application.vistas.sesionEnfoque.SesionEnfoqueActivity"
+            android:exported="false" />
+
+        <service
+            android:name="com.espol.application.controlador.EnfoqueService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse" />
+
+        <activity
+            android:name="com.espol.application.vistas.juegomemoria.JuegoMemoria"
+            android:exported="false" />
+
+        <activity
+            android:name="com.espol.application.vistas.hidratacion.HidratacionMenu"
+            android:exported="true" />
+
+        <activity
+            android:name="com.espol.application.vistas.hidratacion.RegistroTomaActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name="com.espol.application.vistas.hidratacion.MetaActivity"
+            android:exported="false"/>
+        <activity
+            android:name="com.espol.application.vistas.sostenibilidad.MainSostenibilidadActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.espol.application.vistas.sostenibilidad.RegistroSostenibilidadActivity"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
