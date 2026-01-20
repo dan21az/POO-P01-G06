@@ -2,8 +2,8 @@ package com.espol.application.datos;
 
 import android.content.Context;
 
-import com.espol.application.modelos.sostenibilidad.Sostenibilidad;
-import com.espol.application.vistas.sostenibilidad.FechaUtils;
+import com.espol.application.modelo.sostenibilidad.Sostenibilidad;
+import com.espol.application.vista.sostenibilidad.FechaUtils;
 import com.espol.application.controlador.SostenibilidadControladora;
 
 import java.io.FileInputStream;

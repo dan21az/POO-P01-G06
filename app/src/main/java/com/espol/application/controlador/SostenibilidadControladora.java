@@ -3,7 +3,7 @@ package com.espol.application.controlador;
 import android.content.Context;
 
 import com.espol.application.datos.SostenibilidadDatos;
-import com.espol.application.vistas.sostenibilidad.FechaUtils;
+import com.espol.application.vista.sostenibilidad.FechaUtils;
 
 import java.util.ArrayList;
 

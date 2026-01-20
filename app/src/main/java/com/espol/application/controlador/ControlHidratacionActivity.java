@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.espol.application.R;
 import com.espol.application.datos.HidratacionDatos;
-import com.espol.application.modelos.hidratacion.RegistroHidratacion;
-import com.espol.application.vistas.hidratacion.MetaActivity;
-import com.espol.application.vistas.hidratacion.RegistroAdapter;
-import com.espol.application.vistas.hidratacion.RegistroTomaActivity;
+import com.espol.application.modelo.hidratacion.RegistroHidratacion;
+import com.espol.application.vista.hidratacion.MetaActivity;
+import com.espol.application.vista.hidratacion.RegistroAdapter;
+import com.espol.application.vista.hidratacion.RegistroTomaActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 

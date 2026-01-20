@@ -21,12 +21,12 @@ import androidx.core.app.NotificationCompat;
 import com.espol.application.AjustesActivity;
 import com.espol.application.R;
 import com.espol.application.datos.ActividadesDatos;
-import com.espol.application.modelos.actividad.Academica;
-import com.espol.application.modelos.actividad.Actividad;
-import com.espol.application.modelos.sesionenfoque.DeepWork;
-import com.espol.application.modelos.sesionenfoque.Pomodoro;
-import com.espol.application.modelos.sesionenfoque.SesionEnfoque;
-import com.espol.application.vistas.sesionEnfoque.SesionEnfoqueActivity;
+import com.espol.application.modelo.actividad.Academica;
+import com.espol.application.modelo.actividad.Actividad;
+import com.espol.application.modelo.sesionenfoque.DeepWork;
+import com.espol.application.modelo.sesionenfoque.Pomodoro;
+import com.espol.application.modelo.sesionenfoque.SesionEnfoque;
+import com.espol.application.vista.sesionEnfoque.SesionEnfoqueActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

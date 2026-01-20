@@ -2,9 +2,9 @@ package com.espol.application.datos;
 
 import android.content.Context;
 
-import com.espol.application.modelos.hidratacion.Hidratacion;
-import com.espol.application.modelos.hidratacion.RegistroHidratacion;
-import com.espol.application.modelos.hidratacion.DiaHidratacion;
+import com.espol.application.modelo.hidratacion.Hidratacion;
+import com.espol.application.modelo.hidratacion.RegistroHidratacion;
+import com.espol.application.modelo.hidratacion.DiaHidratacion;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

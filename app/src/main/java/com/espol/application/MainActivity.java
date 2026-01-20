@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.espol.application.vistas.hidratacion.HidratacionMenu;
+import com.espol.application.vista.hidratacion.HidratacionMenu;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.button.MaterialButton;
 
-import com.espol.application.vistas.juegomemoria.JuegoMemoria;
-import com.espol.application.vistas.actividad.ListaActividades;
-import com.espol.application.vistas.sostenibilidad.MainSostenibilidadActivity;
+import com.espol.application.vista.juegomemoria.JuegoMemoria;
+import com.espol.application.vista.actividad.ListaActividades;
+import com.espol.application.vista.sostenibilidad.MainSostenibilidadActivity;
 
 
 public class MainActivity extends AppCompatActivity {

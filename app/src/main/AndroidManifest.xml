@@ -37,27 +37,27 @@
             android:exported="false" />
 
         <activity
-            android:name="com.espol.application.vistas.actividad.IngresarActividad"
+            android:name="com.espol.application.vista.actividad.IngresarActividad"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".vistas.actividad.EditarActividad"
+        <activity android:name=".vista.actividad.EditarActividad"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="com.espol.application.vistas.actividad.RegistrarAvance"
+            android:name="com.espol.application.vista.actividad.RegistrarAvance"
             android:exported="false" />
 
         <activity
-            android:name="com.espol.application.vistas.actividad.DetalleActividad"
+            android:name="com.espol.application.vista.actividad.DetalleActividad"
             android:exported="false" />
 
         <activity
-            android:name="com.espol.application.vistas.actividad.ListaActividades"
+            android:name="com.espol.application.vista.actividad.ListaActividades"
             android:exported="false" />
 
         <activity
-            android:name="com.espol.application.vistas.sesionEnfoque.SesionEnfoqueActivity"
+            android:name="com.espol.application.vista.sesionEnfoque.SesionEnfoqueActivity"
             android:exported="false" />
 
         <service
@@ -67,26 +67,26 @@
             android:foregroundServiceType="specialUse" />
 
         <activity
-            android:name="com.espol.application.vistas.juegomemoria.JuegoMemoria"
+            android:name="com.espol.application.vista.juegomemoria.JuegoMemoria"
             android:exported="false" />
 
         <activity
-            android:name="com.espol.application.vistas.hidratacion.HidratacionMenu"
+            android:name="com.espol.application.vista.hidratacion.HidratacionMenu"
             android:exported="true" />
 
         <activity
-            android:name="com.espol.application.vistas.hidratacion.RegistroTomaActivity"
+            android:name="com.espol.application.vista.hidratacion.RegistroTomaActivity"
             android:exported="true"/>
 
         <activity
-            android:name="com.espol.application.vistas.hidratacion.MetaActivity"
+            android:name="com.espol.application.vista.hidratacion.MetaActivity"
             android:exported="false"/>
         <activity
-            android:name="com.espol.application.vistas.sostenibilidad.MainSostenibilidadActivity"
+            android:name="com.espol.application.vista.sostenibilidad.MainSostenibilidadActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.espol.application.vistas.sostenibilidad.RegistroSostenibilidadActivity"
+            android:name="com.espol.application.vista.sostenibilidad.RegistroSostenibilidadActivity"
             android:exported="false" />
 
     </application>

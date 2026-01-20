@@ -4,10 +4,10 @@ package com.espol.application.datos;
 import android.content.Context;
 import android.util.Log;
 
-import com.espol.application.modelos.actividad.Academica;
-import com.espol.application.modelos.actividad.Actividad;
-import com.espol.application.modelos.actividad.Personal;
-import com.espol.application.modelos.sesionenfoque.Pomodoro;
+import com.espol.application.modelo.actividad.Academica;
+import com.espol.application.modelo.actividad.Actividad;
+import com.espol.application.modelo.actividad.Personal;
+import com.espol.application.modelo.sesionenfoque.Pomodoro;
 
 import java.io.File;
 import java.io.FileInputStream;
