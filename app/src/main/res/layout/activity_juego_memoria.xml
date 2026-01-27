@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:theme="@style/Verde.Theme.MyApplication"
     android:padding="24dp"
     android:fitsSystemWindows="true"
-    android:background="@color/verdeBackground"
     >
 
     <!-- Pantalla Inicial -->
@@ -26,7 +26,7 @@
             android:text="Juego de Memoria Sostenible"
             android:textSize="36sp"
             android:textStyle="bold"
-            android:textColor="@color/verdeOnBackground"
+            android:textColor="?attr/colorPrimary"
             android:layout_marginBottom="16dp"
             android:gravity="center"/>
 
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Pon a prueba tu memoria y aprende sobre sostenibilidad emparejando las cartas."
             android:textSize="14sp"
-            android:textColor="@color/verdeOnBackground"
+            android:textColor="?attr/colorPrimaryVariant"
             android:layout_marginBottom="16dp"
             android:gravity="center"/>
 
@@ -45,8 +45,6 @@
             android:id="@+id/btnIniciar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/verdePrimary"
-            android:textColor="@color/verdePrimaryOn"
             android:text="Iniciar Juego" />
     </LinearLayout>
 
@@ -68,8 +66,8 @@
         android:layout_height="wrap_content"
         android:text="Intentos: 0"
         android:textSize="18sp"
-        android:textColor="@color/verdeOnBackground"
         android:visibility="gone"
+        android:textColor="?attr/colorPrimary"
         android:layout_marginTop="16dp"
         />
     <Button
@@ -78,8 +76,6 @@
         android:layout_height="wrap_content"
         android:text="Salir"
         android:visibility="gone"
-        android:backgroundTint="@color/verdePrimary"
-        android:textColor="@color/verdePrimaryOn"
         android:layout_marginTop="16dp" />
 
 </LinearLayout>

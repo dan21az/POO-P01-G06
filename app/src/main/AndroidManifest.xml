@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_PROMOTED_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -41,7 +42,7 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".vista.actividad.EditarActividad"
+        <activity android:name="com.espol.application.vista.actividad.EditarActividad"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
@@ -68,25 +69,31 @@
 
         <activity
             android:name="com.espol.application.vista.juegomemoria.JuegoMemoria"
+            android:theme="@style/Verde.Theme.MyApplication"
             android:exported="false" />
 
         <activity
             android:name="com.espol.application.vista.hidratacion.HidratacionMenu"
+            android:theme="@style/Azul.Theme.MyApplication"
             android:exported="true" />
 
         <activity
             android:name="com.espol.application.vista.hidratacion.RegistroTomaActivity"
+            android:theme="@style/Azul.Theme.MyApplication"
             android:exported="true"/>
 
         <activity
             android:name="com.espol.application.vista.hidratacion.MetaActivity"
+            android:theme="@style/Azul.Theme.MyApplication"
             android:exported="false"/>
         <activity
             android:name="com.espol.application.vista.sostenibilidad.MainSostenibilidadActivity"
+            android:theme="@style/Verde.Theme.MyApplication"
             android:exported="false" />
 
         <activity
             android:name="com.espol.application.vista.sostenibilidad.RegistroSostenibilidadActivity"
+            android:theme="@style/Verde.Theme.MyApplication"
             android:exported="false" />
 
     </application>

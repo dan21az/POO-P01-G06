@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/azulBackground"
+    android:theme="@style/Azul.Theme.MyApplication"
     android:layout_height="match_parent">
 
     <!-- SCROLLABLE CONTENT -->
@@ -31,7 +31,6 @@
                 android:text="Control de Hidratación"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/azulOnBackground"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -45,7 +44,6 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="0dp"
-                android:backgroundTint="@color/azulSurface"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -61,7 +59,6 @@
                         android:layout_height="wrap_content"
                         android:text="Seleccionar Fecha:"
                         android:textSize="12sp"
-                        android:textColor="@color/azulOnSurface"
                         android:textStyle="bold"/>
 
                     <EditText
@@ -69,9 +66,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Seleccione una fecha"
-                        android:textColor="@color/azulOnPrimaryContainer"
-                        android:drawableTint="@color/azulOnSurface"
-                        android:backgroundTint="@color/azulOnSurface"
                         android:drawableEnd="@drawable/ic_calendar_today"
                         android:focusable="false"
                         android:inputType="none" />
@@ -85,7 +79,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/azulSurface"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="0dp"
@@ -110,9 +103,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:progress="0"
-                            app:indicatorColor="@color/azulPrimary"
                             app:indicatorSize="90dp"
-                            app:trackColor="@color/azulTrack"
                             app:trackThickness="10dp" />
 
                         <TextView
@@ -122,7 +113,6 @@
                             android:layout_gravity="center"
                             android:text="0%"
                             android:textSize="18sp"
-                            android:textColor="@color/azulPrimary"
                             android:textStyle="bold" />
                     </FrameLayout>
 
@@ -131,7 +121,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Meta diaria:"
-                        android:textColor="@color/azulOnSurface"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -142,7 +131,6 @@
                         android:text="2000 ml"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="@color/azulOnSurface"
                         app:layout_constraintTop_toBottomOf="@id/tvMetaLabel"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -153,8 +141,6 @@
                         android:layout_marginTop="8dp"
                         android:text="Establecer Meta"
                         android:textAllCaps="false"
-                        android:backgroundTint="@color/azulPrimary"
-                        android:textColor="@color/azulOnPrimary"
                         app:layout_constraintTop_toBottomOf="@id/tvMetaValue"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -183,7 +169,6 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="0dp"
-                android:backgroundTint="@color/azulSurface"
                 app:layout_constraintTop_toBottomOf="@id/cardProgress"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -199,7 +184,6 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="12dp"
-                        android:textColor="@color/azulOnSurface"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -212,8 +196,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginVertical="12dp"
-                        android:background="@color/azulOnSurface" />
+                        android:layout_marginVertical="12dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -225,7 +208,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_width="wrap_content"
-                            android:textColor="@color/azulOnSurface"
                             android:layout_height="wrap_content"/>
 
                         <TextView
@@ -235,7 +217,6 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_width="wrap_content"
-                            android:textColor="@color/azulOnSurface"
                             android:layout_height="wrap_content"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -253,8 +234,6 @@
         android:layout_margin="32dp"
         android:text="Registrar nueva toma de agua"
         android:textAllCaps="false"
-        android:backgroundTint="@color/azulPrimary"
-        android:textColor="@color/azulOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

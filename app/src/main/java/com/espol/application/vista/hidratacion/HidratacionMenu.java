@@ -1,12 +1,12 @@
 package com.espol.application.vista.hidratacion;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,6 +18,9 @@ import com.espol.application.R;
 import com.espol.application.datos.HidratacionDatos;
 import com.espol.application.modelo.hidratacion.RegistroHidratacion;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointBackward;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.Calendar;
@@ -40,6 +43,10 @@ public class HidratacionMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+
+
+
         fechaSeleccionada = Calendar.getInstance();
         //  Cargamos el layout del dashboard
         setContentView(R.layout.activity_hidratacion_control);
@@ -79,26 +86,30 @@ public class HidratacionMenu extends AppCompatActivity {
 
 
     private void configurarEventos() {
-        // Selector de fecha
+        // Selector de fecha Material
         etDate.setOnClickListener(v -> {
-            Calendar c = Calendar.getInstance();
-            new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            // 1. Configurar restricciones (Ejemplo: Solo permitir fechas pasadas y hoy)
+            CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+            constraintsBuilder.setValidator(DateValidatorPointBackward.now());
 
-                fechaSeleccionada = Calendar.getInstance();
-                fechaSeleccionada.set(year, month, dayOfMonth);
+            // 2. Crear el selector
+            MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Seleccionar fecha de registro")
+                    .setSelection(fechaSeleccionada.getTimeInMillis()) // Abrir en la fecha actual
+                    .setCalendarConstraints(constraintsBuilder.build())
+                    .build();
 
-                String fecha = String.format(
-                        Locale.getDefault(),
-                        "%02d/%02d/%d",
-                        dayOfMonth,
-                        month + 1,
-                        year
-                );
+            // 3. Manejar el resultado
+            datePicker.addOnPositiveButtonClickListener(selection -> {
+                // Actualizar nuestro objeto Calendar global
+                fechaSeleccionada.setTimeInMillis(selection);
 
-                etDate.setText(fecha);
+                // Actualizar UI
+                actualizarCampoFecha();
                 actualizarVista();
+            });
 
-            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+            datePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
         });
 
         // Abrir pantalla de Meta

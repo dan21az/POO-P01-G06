@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/verdeBackground"
+    android:theme="@style/Verde.Theme.MyApplication"
     android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:text="Registro Diario de Sostenibilidad"
             android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
             android:layout_marginHorizontal="16dp"
             android:textSize="25sp"
-            android:textColor="@color/verdeOnSurface"
             android:gravity="center" />
 
         <TextView
@@ -30,8 +30,8 @@
             android:text="(17/12/2025)"
             android:textSize="12sp"
             android:gravity="center"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginTop="6dp"
-            android:textColor="@color/verdeOnSurface"
             android:layout_marginBottom="12dp"/>
 
         <com.google.android.material.card.MaterialCardView
@@ -45,7 +45,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:background="@color/verdeSurface"
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -66,9 +65,7 @@
                         android:layout_height="48dp"
                         android:layout_weight="1"
                         android:text="Guardar"
-                        android:textAllCaps="false"
-                        android:textColor="@color/verdePrimaryOn"
-                        android:backgroundTint="@color/verdePrimary"/>
+                        android:textAllCaps="false" />
 
                     <Space
                         android:layout_width="12dp"
@@ -81,8 +78,8 @@
                         android:layout_weight="1"
                         android:text="Cancelar"
                         android:textAllCaps="false"
-                        android:textColor="?attr/colorOnError"
-                        android:backgroundTint="?attr/colorError" />
+                        android:textColor="?attr/colorOnSecondary"
+                        android:backgroundTint="?attr/colorSecondary" />
                 </LinearLayout>
 
             </LinearLayout>

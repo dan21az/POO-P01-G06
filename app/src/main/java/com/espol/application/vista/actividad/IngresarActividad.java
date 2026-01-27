@@ -16,6 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -43,6 +45,8 @@ public class IngresarActividad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_ingresar_actividad);
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tv_titulo), (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -155,8 +159,16 @@ public class IngresarActividad extends AppCompatActivity {
     }
 
     private void selectorFecha() {
+
+        // 1. Crear las restricciones (Constraints)
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+
+        // 2. Aplicar un validador que solo permita fechas a partir de hoy
+        constraintsBuilder.setValidator(DateValidatorPointForward.now());
+
         MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Seleccionar Fecha")
+                .setCalendarConstraints(constraintsBuilder.build())
                 .build();
 
         // Manejar la selección de la fecha

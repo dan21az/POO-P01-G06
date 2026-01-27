@@ -47,6 +47,10 @@ public class EditarActividad extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+
+
+
         // Reutilizamos el layout de ingresar actividad
         setContentView(R.layout.activity_actividad_ingresar_actividad);
 

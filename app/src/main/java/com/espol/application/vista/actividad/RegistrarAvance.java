@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -35,6 +36,10 @@ public class RegistrarAvance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_registrar_avance);
+        EdgeToEdge.enable(this);
+
+
+
         inicializarVistas();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tv_titulo_avance), (v, windowInsets) -> {

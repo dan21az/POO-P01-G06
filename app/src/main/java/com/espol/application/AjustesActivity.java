@@ -37,7 +37,7 @@ public class AjustesActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_ajustes);
-
+        EdgeToEdge.enable(this);
         // Padding dinamico de toolbar de ajustes
         View mainLayout = findViewById(R.id.toolbar_ajustes);
         MaterialToolbar toolbar = findViewById(R.id.toolbar_ajustes);

@@ -1,6 +1,7 @@
 package com.espol.application.vista.juegomemoria;
 
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -9,10 +10,11 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import com.espol.application.R;
@@ -36,7 +38,9 @@ public class JuegoMemoria extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_juego_memoria);
+
 
         pantallaInicio = findViewById(R.id.pantallaInicio);
         btnIniciar = findViewById(R.id.btnIniciar);
@@ -93,8 +97,8 @@ public class JuegoMemoria extends AppCompatActivity {
             // Redondeado, borde y color la carta
             btn.setCornerRadius(20);
             btn.setStrokeWidth(0);
-            btn.setBackgroundColor(ContextCompat.getColor(this, R.color.verdeOnSurface));
-            btn.setTextColor(ContextCompat.getColor(this, R.color.verdeSurface));
+            btn.setBackgroundColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorPrimaryContainer, Color.WHITE));
+            btn.setTextColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnPrimaryContainer, Color.WHITE));
             // Estado Oculta ("?") centrado y grande
             btn.setTextSize(32);
             btn.setGravity(Gravity.CENTER);
@@ -190,15 +194,15 @@ public class JuegoMemoria extends AppCompatActivity {
                 botones[i].setIconPadding(0);
 
                 //Color del icono y carta revelada
-                botones[i].setBackgroundColor(ContextCompat.getColor(this, R.color.verdePrimaryContainer));
-                botones[i].setIconTint(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.verdeOnSurface)));
+                botones[i].setBackgroundColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSecondary, Color.BLACK));
+                botones[i].setIconTint(ColorStateList.valueOf(MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnSecondary, Color.WHITE)));
 
             } else {
 
                 botones[i].setText("?"); // Mostrar ?
                 botones[i].setIcon(null); //Ocultar icono
-                botones[i].setBackgroundColor(ContextCompat.getColor(this, R.color.verdeOnSurface));
-                botones[i].setTextColor(ContextCompat.getColor(this, R.color.verdeSurface));
+                botones[i].setBackgroundColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorPrimaryContainer, Color.WHITE));
+                botones[i].setTextColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnPrimaryContainer, Color.WHITE));
             }
 
         }
