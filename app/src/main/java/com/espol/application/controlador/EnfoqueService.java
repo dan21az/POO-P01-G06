@@ -9,7 +9,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ServiceInfo;
+import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.os.VibrationEffect;
@@ -271,24 +273,59 @@ public class EnfoqueService extends Service {
                 intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, canalActivo)
-                .setSmallIcon(R.drawable.timer_24px)
-                .setContentTitle(titulo)
-                .setContentText(contenido)
-                .setOngoing(true)
-                .setOnlyAlertOnce(true)
-                .setGroup(CHANNEL_GROUP_ID)
-                .setContentIntent(pi);
+        if (Build.VERSION.SDK_INT >= 36) { // Soporte para Android 16
+            Bundle extras = new Bundle();
+            // Solicitar promoción a Live Update vía extras
+            extras.putBoolean("android.requestPromotedOngoing", true);
 
-        // Botones de acción rápida en la notifcación
-        if (estadoActual == Estado.CORRIENDO) {
-            builder.addAction(0, "Pausar", crearPendingIntent(ACCION_PAUSA));
+            Notification.Builder builder = new Notification.Builder(this, canalActivo)
+                    .setSmallIcon(R.drawable.timer_24px)
+                    .setContentTitle(titulo)
+                    .setContentText(contenido)
+                    .setOngoing(true)
+                    .setOnlyAlertOnce(true)
+                    .setGroup(CHANNEL_GROUP_ID)
+                    .setContentIntent(pi)
+                    .setExtras(extras);
+
+            // Configurar el chip de estado
+            String textoChip = String.format(Locale.getDefault(), "%02d:%02d",
+                    (tiempoRestanteMs / 1000) / 60, (tiempoRestanteMs / 1000) % 60);
+            builder.setShortCriticalText(textoChip);
+
+
+            // Acciones con el nuevo constructor de Action
+            if (estadoActual == Estado.CORRIENDO) {
+                builder.addAction(new Notification.Action.Builder(
+                        Icon.createWithResource(this, R.drawable.timer_24px), "Pausar", crearPendingIntent(ACCION_PAUSA)).build());
+            } else {
+                builder.addAction(new Notification.Action.Builder(
+                        Icon.createWithResource(this, R.drawable.timer_24px), "Reanudar", crearPendingIntent(ACCION_INICIAR)).build());
+            }
+            builder.addAction(new Notification.Action.Builder(
+                    Icon.createWithResource(this, R.drawable.timer_24px), "Detener", crearPendingIntent(ACCION_PARAR)).build());
+
+            return builder.build();
         } else {
-            builder.addAction(0, "Reanudar", crearPendingIntent(ACCION_INICIAR));
-        }
-        builder.addAction(0, "Detener", crearPendingIntent(ACCION_PARAR));
+            // Versiones anteriores a Android 16
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, canalActivo)
+                    .setSmallIcon(R.drawable.timer_24px)
+                    .setContentTitle(titulo)
+                    .setContentText(contenido)
+                    .setOngoing(true)
+                    .setOnlyAlertOnce(true)
+                    .setGroup(CHANNEL_GROUP_ID)
+                    .setContentIntent(pi);
 
-        return builder.build();
+            if (estadoActual == Estado.CORRIENDO) {
+                builder.addAction(0, "Pausar", crearPendingIntent(ACCION_PAUSA));
+            } else {
+                builder.addAction(0, "Reanudar", crearPendingIntent(ACCION_INICIAR));
+            }
+            builder.addAction(0, "Detener", crearPendingIntent(ACCION_PARAR));
+
+            return builder.build();
+        }
     }
 
     //Acción del botón de la notificación
